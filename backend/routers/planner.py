@@ -49,6 +49,7 @@ CRITICAL RULES FOR MERMAID DIAGRAMS:
 - Node labels MUST NOT contain parentheses or special characters. (e.g. use `id["Web Audio API"]` instead of `id["Web Audio API (Browser)"]`).
 - Edge labels MUST NOT contain special characters like parentheses or brackets. (e.g. use `-->|API Request|` instead of `-->|API Request (HTTP/WS)|`).
 - DO NOT use any HTML tags inside node labels.
+- ER Diagram attributes MUST follow the format `type name`. Types MUST NOT contain spaces (e.g. use `DateTime` instead of `Date Time` or `timestamp with time zone`). Do not add extra constraints like `PK` or `FK` if they cause syntax errors, just keep it simple `type name`.
 
 ## API Design
 (List 3-5 core REST or GraphQL endpoints needed)
@@ -112,6 +113,7 @@ CRITICAL RULES FOR MERMAID DIAGRAMS:
 - Node labels MUST NOT contain parentheses or special characters. (e.g. use `id["Web Audio API"]` instead of `id["Web Audio API (Browser)"]`).
 - Edge labels MUST NOT contain special characters like parentheses or brackets. (e.g. use `-->|API Request|` instead of `-->|API Request (HTTP/WS)|`).
 - DO NOT use any HTML tags inside node labels.
+- ER Diagram attributes MUST follow the format `type name`. Types MUST NOT contain spaces (e.g. use `DateTime` instead of `Date Time` or `timestamp with time zone`). Do not add extra constraints like `PK` or `FK` if they cause syntax errors, just keep it simple `type name`.
 """
 
     if request.is_compact_mode:
