@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import styles from './page.module.css';
 import MarkdownViewer from '../../components/MarkdownViewer';
 import Sidebar from '../../components/Sidebar';
@@ -12,7 +12,7 @@ interface Message {
   content: string;
 }
 
-export default function DocsGenerator() {
+function DocsContent() {
   const [sessionActive, setSessionActive] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -241,5 +241,13 @@ export default function DocsGenerator() {
         )}
       </main>
     </div>
+  );
+}
+
+export default function DocumentAnalyzer() {
+  return (
+    <Suspense fallback={<div style={{ color: 'white', padding: '2rem' }}>Loading workspace...</div>}>
+      <DocsContent />
+    </Suspense>
   );
 }

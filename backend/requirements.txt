@@ -4,4 +4,6 @@ pydantic
 sqlalchemy
 python-multipart
 pypdf
-google-genai
+google-generativeai
+python-dotenv
+psycopg2-binary
