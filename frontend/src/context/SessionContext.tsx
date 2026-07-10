@@ -24,6 +24,7 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined);
 export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [compactMode, setCompactMode] = useState<boolean>(false);
+  const [isWakingUp, setIsWakingUp] = useState<boolean>(true);
 
   const toggleCompactMode = () => setCompactMode(prev => !prev);
 
@@ -39,7 +40,8 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
           setSessions(data);
         }
       })
-      .catch(err => console.error("Failed to fetch sessions", err));
+      .catch(err => console.error("Failed to fetch sessions", err))
+      .finally(() => setIsWakingUp(false));
   }, []);
 
   const addSession = async (type: 'Scribe' | 'Insight' | 'Genesis', id: string, url: string) => {
@@ -87,6 +89,11 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <SessionContext.Provider value={{ sessions, addSession, removeSession, clearSessions, compactMode, toggleCompactMode }}>
+      {isWakingUp && (
+        <div style={{ background: '#ca8a04', color: 'white', textAlign: 'center', padding: '8px', fontSize: '14px', zIndex: 9999, position: 'relative' }}>
+          Waking up AI backend... (This might take 1-2 minutes)
+        </div>
+      )}
       {children}
     </SessionContext.Provider>
   );
